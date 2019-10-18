@@ -11,20 +11,21 @@ class Dashboard extends Component {
     
     
     deleteProduct(id){
-        axios.delete('/api/product/' + id)
+        console.log(id)
+        axios.delete(`/api/product/${id}`)
         .then(response => {
-            this.props.get();
+            this.props.componentDidMount();
         }).catch(err => console.log(err));
     }
 
 
     render() {
-        let arr = this.props.inventory.map(val => {
+        let newInventory = this.props.inventory.map(val => {
             return <Product delete={this.deleteProduct} changeProduct={this.props.changeProduct} id={val.id} name={val.name} price={val.price} img={val.img} key={val.id}/>
         })
         return(
             <div>
-                {arr}
+                {newInventory}
             </div>
         )
     }

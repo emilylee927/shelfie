@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import axios from "axios";
 import "./Form.css";
+import { identifier } from '@babel/types';
+import {Link} from 'react-router-dom';
+
 
 
 
@@ -11,10 +14,16 @@ class Form extends Component {
             input1: '',
             input2: '',
             input3: '',
-            editing:true,
+            editing:false,
         }
     }
    
+
+    componentDidMount(){
+        if(this.props.currentProduct !== null){
+            this.state.editing = true
+        }
+    }
 
     updateInput1(e) {
         this.setState({input1: e.target.value});
@@ -40,6 +49,16 @@ class Form extends Component {
         })
     }
 
+     updateProduct=()=>{
+         axios.put('/api/product' +identifier, {name:this.state.input1,price: this.state.input2, img: this.state.input3})
+         .then(response=>{
+             this.setState({editing:false});
+             this.props.changeProduct(null);
+             this.props.get();
+             this.handleCancelClick();
+         })
+     }
+
 render(){
     return(
         <div className="form-div">
@@ -55,8 +74,9 @@ render(){
             <div className="buttons">
                 <button className='Cancel' onClick={() => this.handleCancelClick()}>Cancel</button>
                 {this.state.editing ?
-                <button  className="add"onClick={() => this.addProduct()}>Add to Inventory</button> 
-                : <button onClick={() => this.updateProduct(this.state.currentProduct)}>Save Changes</button>
+                <Link to='/'><button onClick={()=>this.updateProduct(this.props.currentProduct)}>Save Changes</button></Link>
+                :<button  className="add"onClick={() => this.addProduct()}>Add to Inventory</button> 
+                
                 }
             </div>    
         </div>

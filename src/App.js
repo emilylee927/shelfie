@@ -51,10 +51,10 @@ changeProduct = id => {
               <Dashboard inventory={this.state.inventory} get={this.getInventory} changeProduct={this.changeProduct}/> 
             </Route>
             <Route exact path='/edit/:id' >
-              <Form currentProduct={this.state.currentProduct} get={this.getInventory} />
+              <Form currentProduct={this.state.currentProduct} get={this.getInventory} changeProduct={this.changeProduct} />
             </Route>
             <Route exact path='/add' >
-              <Form currentProduct={this.state.currentProduct} get={this.getInventory} />
+              <Form currentProduct={this.state.currentProduct} get={this.getInventory} changeProduct={this.changeProduct} />
             </Route>
             
           </Switch>
