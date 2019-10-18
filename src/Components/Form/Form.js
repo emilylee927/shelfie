@@ -74,7 +74,7 @@ render(){
             <div className="buttons">
                 <button className='Cancel' onClick={() => this.handleCancelClick()}>Cancel</button>
                 {this.state.editing ?
-                <Link to='/'><button onClick={()=>this.updateProduct(this.props.currentProduct)}>Save Changes</button></Link>
+                <Link to='/'><button className="Save" onClick={()=>this.updateProduct(this.props.currentProduct)}>Save Changes</button></Link>
                 :<button  className="add"onClick={() => this.addProduct()}>Add to Inventory</button> 
                 
                 }

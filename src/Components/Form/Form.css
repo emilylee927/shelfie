@@ -51,3 +51,16 @@
     font-size: 16px;
     width:70%
 }
+
+
+.buttons .Save{
+    padding: 10px;
+    margin: 5px 10px;
+    background-color: #ed6b5a;
+    border-radius: 7px;
+    border: none;
+    font-family: Open Sans,sans-serif;
+    font-weight: 700;
+    font-size: 16px;
+    width:70%
+}
