@@ -4,7 +4,7 @@ import Dashboard from './Components/Dashboard/Dashboard';
 import Form from './Components/Form/Form';
 import Header from "./Components/Header/Header";
 import axios from "axios";
-import {HashRouter, Route, Switch} from 'react-router-dom';
+import {HashRouter, Route, Switch, Link} from 'react-router-dom';
 
 
 
@@ -13,7 +13,7 @@ class App extends Component {
       super();
       this.state = {
         inventory:[],
-        currentProduct:null,
+        currentProduct: null,
       }
     
 }
@@ -32,8 +32,8 @@ componentDidMount() {
   console.log("DidMounted")
 }
 
-changeProduct =NewProduct=> {
-  this.setState({currentProduct: NewProduct});
+changeProduct = id => {
+  this.setState({currentProduct: id});
 }
 
   render(){
@@ -41,26 +41,27 @@ changeProduct =NewProduct=> {
        <>
         <Header className='Logo'/>
         <HashRouter>
+          <nav>
+          <Link to='/'><button>Dashboard</button></Link>
+          <Link to='/add'><button>Add Inventory</button></Link>
+          </nav>
           <Switch>
-            <Route path='/' 
-              render={() => 
-              <><Dashboard inventory={this.state.inventory} get={this.getInventory} changeProduct={this.changeProduct}/>
-              </>} >
+            <Route exact path='/' >
+              <Dashboard inventory={this.state.inventory} get={this.getInventory} changeProduct={this.changeProduct}/> 
             </Route>
-            <Route path='/edit/:id' 
-              render={() => 
-              <><Form currentProduct={this.state.currentProduct} get={this.getInventory} /></>}>
+            <Route exact path='/edit/:id' >
+              <Form currentProduct={this.state.currentProduct} get={this.getInventory} />
             </Route>
-            <Route path='/add' 
-              render={() => 
-              <><Form currentProduct={this.state.currentProduct} get={this.getInventory} /></>}>
+            <Route exact path='/add' >
+              <Form currentProduct={this.state.currentProduct} get={this.getInventory} />
             </Route>
             
-            </Switch>  
+          </Switch>
         </HashRouter>
-       
-        </>
+      </>
     );
 }
 }
 export default App;
+
+

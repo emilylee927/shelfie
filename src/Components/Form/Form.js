@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import axios from "axios";
 
 
 
@@ -31,11 +32,11 @@ class Form extends Component {
 
     addProduct = ()=> {
         console.log('hi~ADD product is working')
-        // axios.post('/api/product', {name: this.state.input1, price: this.state.input2, img: this.state.input3})
-        // .then(response => {
-        //     this.props.get();
-        //     this.handleCancelClick();
-        // })
+        axios.post('/api/product', {name: this.state.input1, price: this.state.input2, img: this.state.input3})
+        .then(response => {
+            this.props.get();
+            this.handleCancelClick();
+        })
     }
 
 render(){
