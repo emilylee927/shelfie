@@ -39,8 +39,9 @@ changeProduct = id => {
   render(){
     return (
        <>
-        <Header className='Logo'/>
+        
         <HashRouter>
+        <Header className='Logo'/>
           <nav>
           <Link to='/'><button>Dashboard</button></Link>
           <Link to='/add'><button>Add Inventory</button></Link>

@@ -3,11 +3,14 @@ import "./Header.css";
 
 function Header(props) {
     return(
-        <div>
-            <h1>Shelfie</h1>
+        <div className='header'>
+            <h1 className="brandName">SHELFIE</h1>
         </div>
     )
 }
 
 export default Header;
+
+
+
 

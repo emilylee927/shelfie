@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import axios from "axios";
+import "./Form.css";
 
 
 
@@ -41,15 +42,23 @@ class Form extends Component {
 
 render(){
     return(
-        <div>
-            <input onChange={(e)=> this.updateInput1(e)}  value={this.state.input1}></input>
-            <input onChange={(e) => this.updateInput2(e)} value={this.state.input2}></input>
-            <input onChange={e => this.updateInput3(e)}  value={this.state.input3}></input>
-            <button onClick={() => this.handleCancelClick()}>Cancel</button>
-            {this.state.editing ?
-            <button onClick={() => this.addProduct()}>Add to Inventory</button> 
-            : <button onClick={() => this.updateProduct(this.state.currentProduct)}>Save Changes</button>
-            }
+        <div className="form-div">
+            <label for="Img_URL">Img_URL:</label>
+            <br/>
+            <input name="Img_URL" onChange={e => this.updateInput3(e)}  value={this.state.input3}></input>
+            <label for="Name">Name:</label>
+            <br/>
+            <input  name='Name' onChange={(e)=> this.updateInput1(e)}  value={this.state.input1}></input>
+            <label for="Product_Price">Product_Price:</label>
+            <br/>
+            <input name='Product_Price' onChange={(e) => this.updateInput2(e)} value={this.state.input2}></input>
+            <div className="buttons">
+                <button className='Cancel' onClick={() => this.handleCancelClick()}>Cancel</button>
+                {this.state.editing ?
+                <button  className="add"onClick={() => this.addProduct()}>Add to Inventory</button> 
+                : <button onClick={() => this.updateProduct(this.state.currentProduct)}>Save Changes</button>
+                }
+            </div>    
         </div>
     )
 }

@@ -1,8 +1,11 @@
-header{
+.header{
 width: 100%;
-height: 100px;
-position: fixed;
 top: 0;
 background-color: #ab2a19;
-z-index: 2;
+display:flex;
+}
+
+.brandName{
+    color:white;
+    padding-left: 4em;
 }
