@@ -14,6 +14,7 @@ class App extends Component {
       this.state = {
         inventory:[],
         currentProduct: null,
+        allInventory:[]
       }
     
 }
@@ -34,6 +35,11 @@ componentDidMount() {
 
 changeProduct = id => {
   this.setState({currentProduct: id});
+}
+
+
+updateItem = newArr =>{
+  this.setState({allInventory:newArr})
 }
 
   render(){

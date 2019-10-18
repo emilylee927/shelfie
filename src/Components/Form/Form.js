@@ -11,9 +11,9 @@ class Form extends Component {
     constructor(){
         super();
         this.state={
-            input1: '',
-            input2: '',
-            input3: '',
+            name: '',
+            product_price: '',
+            img: '',
             editing:false,
         }
     }
@@ -25,24 +25,24 @@ class Form extends Component {
         }
     }
 
-    updateInput1(e) {
-        this.setState({input1: e.target.value});
+    updateName(e) {
+        this.setState({name: e.target.value});
     }
-    updateInput2(e) {
-        this.setState({input2: e.target.value});
+    updateProduct_price(e) {
+        this.setState({product_price: e.target.value});
     }
-    updateInput3(e) {
-        this.setState({input3: e.target.value});
+    updateImg(e) {
+        this.setState({img: e.target.value});
     }
    
     handleCancelClick =()=> {
         console.log("cancel click working")
-        this.setState({input1: '', input2: '', input3: ''});
+        this.setState({name: '', product_price: '', img: ''});
     }
 
     addProduct = ()=> {
         console.log('hi~ADD product is working')
-        axios.post('/api/product', {name: this.state.input1, price: this.state.input2, img: this.state.input3})
+        axios.post('/api/product', {name: this.state.name, price: this.state.product_price, img: this.state.img})
         .then(response => {
             this.props.get();
             this.handleCancelClick();
@@ -50,7 +50,7 @@ class Form extends Component {
     }
 
      updateProduct=()=>{
-         axios.put('/api/product' +identifier, {name:this.state.input1,price: this.state.input2, img: this.state.input3})
+         axios.put('/api/product' +identifier, {name:this.state.name,price: this.state.product_price, img: this.state.img})
          .then(response=>{
              this.setState({editing:false});
              this.props.changeProduct(null);
@@ -64,13 +64,13 @@ render(){
         <div className="form-div">
             <label for="Img_URL">Img_URL:</label>
             <br/>
-            <input name="Img_URL" onChange={e => this.updateInput3(e)}  value={this.state.input3}></input>
+            <input name="Img_URL" onChange={e => this.updateImg(e)}  value={this.state.img}></input>
             <label for="Name">Name:</label>
             <br/>
-            <input  name='Name' onChange={(e)=> this.updateInput1(e)}  value={this.state.input1}></input>
+            <input  name='Name' onChange={(e)=> this.updateName(e)}  value={this.state.name}></input>
             <label for="Product_Price">Product_Price:</label>
             <br/>
-            <input name='Product_Price' onChange={(e) => this.updateInput2(e)} value={this.state.input2}></input>
+            <input name='Product_Price' onChange={(e) => this.updateProduct_price(e)} value={this.state.product_price}></input>
             <div className="buttons">
                 <button className='Cancel' onClick={() => this.handleCancelClick()}>Cancel</button>
                 {this.state.editing ?

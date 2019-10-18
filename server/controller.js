@@ -37,7 +37,8 @@ edit:(req,res)=>{
 deleteProduct:(req, res) => {
     const dbInstance = req.app.get('db');
     console.log('byebye');
-    dbInstance.delete_product(req.params.id)
+    const{id}=req.params;
+    dbInstance.delete_product([id])
     .then(response => {
         res.sendStatus(200);
     }).catch(err => console.log(err));

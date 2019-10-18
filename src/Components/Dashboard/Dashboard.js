@@ -9,15 +9,25 @@ class Dashboard extends Component {
         this.deleteProduct = this.deleteProduct.bind(this)
     }
     
-    
-    deleteProduct(id){
-        console.log(id)
-        axios.delete(`/api/product/${id}`)
-        .then(response => {
-            this.props.componentDidMount();
-        }).catch(err => console.log(err));
-    }
 
+    
+    
+    // deleteProduct(id){
+    //     console.log(id)
+    //     axios.delete(`/api/product/${id}`)
+    //     .then(response => {
+    //         this.props.getInventory();
+    //     }).catch(err => console.log(err));
+    // }
+
+    deleteProduct =(id)=>{
+        console.log(id)
+        axios.delete(`/api/product/${id}`).then(response=>{
+            console.log(response);
+            this.props.updateItem(response.data)
+        })
+      }
+ 
 
     render() {
         let newInventory = this.props.inventory.map(val => {
