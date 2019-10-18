@@ -1,13 +1,15 @@
-import React, { Component } from 'react';
+import React from 'react';
 
 
 
-class Product extends Component {
-
-render(){
+function Product(props) {
     return(
         <div>
-            <h1>Product</h1>
+            {props.name}
+            {props.price}
+            <img src={props.img} />
+            <button onClick={() => props.delete(props.id)}>Delete</button>
+            <button onClick={() => props.changeProduct(props.id)}>Edit</button>
         </div>
     )
 }
@@ -15,8 +17,6 @@ render(){
 
 
 
-
-}
 
 
 export default Product;

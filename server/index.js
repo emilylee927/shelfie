@@ -25,5 +25,5 @@ app.delete("/api/product/:id", deleteProduct)
 
 
 app.listen(4000, () => {
-    console.log(`Server listening on port 4000.`);
+    console.log(`hi cookie monster~ I am listening on port 4000 `);
   });

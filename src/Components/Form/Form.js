@@ -9,6 +9,7 @@ class Form extends Component {
             input1: '',
             input2: '',
             input3: '',
+            editing:true,
         }
     }
    
@@ -44,7 +45,10 @@ render(){
             <input onChange={(e) => this.updateInput2(e)} value={this.state.input2}></input>
             <input onChange={e => this.updateInput3(e)}  value={this.state.input3}></input>
             <button onClick={() => this.handleCancelClick()}>Cancel</button>
+            {this.state.editing ?
             <button onClick={() => this.addProduct()}>Add to Inventory</button> 
+            : <button onClick={() => this.updateProduct(this.state.currentProduct)}>Save Changes</button>
+            }
         </div>
     )
 }

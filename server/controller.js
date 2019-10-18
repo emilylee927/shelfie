@@ -21,7 +21,7 @@ create:(req,res)=>{
 
 edit:(req,res)=>{
     const dbInstance = req.app.get('db');
-    const {name,price,img, } = req.body;
+    const {name,price,img} = req.body;
     console.log(price)
     const{id}=req.params;
     console.log(id)

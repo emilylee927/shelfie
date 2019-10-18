@@ -4,6 +4,8 @@ import Dashboard from './Components/Dashboard/Dashboard';
 import Form from './Components/Form/Form';
 import Header from "./Components/Header/Header";
 import axios from "axios";
+import {HashRouter, Route, Switch} from 'react-router-dom';
+
 
 
 class App extends Component {
@@ -11,7 +13,7 @@ class App extends Component {
       super();
       this.state = {
         inventory:[],
-
+        currentProduct:null,
       }
     
 }
@@ -27,19 +29,37 @@ getInventory=() =>{
 
 componentDidMount() {
   this.getInventory();
+  console.log("DidMounted")
 }
 
-changeProduct= product => {
-  this.setState({currentProduct: product});
+changeProduct =NewProduct=> {
+  this.setState({currentProduct: NewProduct});
 }
 
   render(){
     return (
-      <div className="App">
-        <Dashboard inventory={this.state.inventory} get={this.getInventory} changeProduct={this.changeProduct}/>
-        <Form/>
-        <Header/>
-      </div>
+       <>
+        <Header className='Logo'/>
+        <HashRouter>
+          <Switch>
+            <Route path='/' 
+              render={() => 
+              <><Dashboard inventory={this.state.inventory} get={this.getInventory} changeProduct={this.changeProduct}/>
+              </>} >
+            </Route>
+            <Route path='/edit/:id' 
+              render={() => 
+              <><Form currentProduct={this.state.currentProduct} get={this.getInventory} /></>}>
+            </Route>
+            <Route path='/add' 
+              render={() => 
+              <><Form currentProduct={this.state.currentProduct} get={this.getInventory} /></>}>
+            </Route>
+            
+            </Switch>  
+        </HashRouter>
+       
+        </>
     );
 }
 }
