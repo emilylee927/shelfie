@@ -54,13 +54,13 @@ updateItem = newArr =>{
           </nav>
           <Switch>
             <Route exact path='/' >
-              <Dashboard inventory={this.state.inventory} get={this.getInventory} changeProduct={this.changeProduct}/> 
+              <Dashboard inventory={this.state.inventory} getInventory={this.getInventory} changeProduct={this.changeProduct}/> 
             </Route>
             <Route exact path='/edit/:id' >
-              <Form currentProduct={this.state.currentProduct} get={this.getInventory} changeProduct={this.changeProduct} />
+              <Form editing={true} currentProduct={this.state.currentProduct} getInventory={this.getInventory} />
             </Route>
             <Route exact path='/add' >
-              <Form currentProduct={this.state.currentProduct} get={this.getInventory} changeProduct={this.changeProduct} />
+              <Form editing={false} currentProduct={this.state.currentProduct} getInventory={this.getInventory} />
             </Route>
             
           </Switch>

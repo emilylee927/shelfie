@@ -13,15 +13,7 @@ class Form extends Component {
         this.state={
             name: '',
             product_price: '',
-            img: '',
-            editing:false,
-        }
-    }
-   
-
-    componentDidMount(){
-        if(this.props.currentProduct !== null){
-            this.state.editing = true
+            img: ''
         }
     }
 
@@ -44,17 +36,15 @@ class Form extends Component {
         console.log('hi~ADD product is working')
         axios.post('/api/product', {name: this.state.name, price: this.state.product_price, img: this.state.img})
         .then(response => {
-            this.props.get();
+            this.props.getInventory();
             this.handleCancelClick();
         })
     }
 
-     updateProduct=()=>{
-         axios.put('/api/product' +identifier, {name:this.state.name,price: this.state.product_price, img: this.state.img})
+     updateProduct=(id)=>{
+         axios.put('/api/product/' +id, {name:this.state.name,price: this.state.product_price, img: this.state.img})
          .then(response=>{
-             this.setState({editing:false});
-             this.props.changeProduct(null);
-             this.props.get();
+             this.props.getInventory();
              this.handleCancelClick();
          })
      }
@@ -73,8 +63,8 @@ render(){
             <input name='Product_Price' onChange={(e) => this.updateProduct_price(e)} value={this.state.product_price}></input>
             <div className="buttons">
                 <button className='Cancel' onClick={() => this.handleCancelClick()}>Cancel</button>
-                {this.state.editing ?
-                <Link to='/'><button className="Save" onClick={()=>this.updateProduct(this.props.currentProduct)}>Save Changes</button></Link>
+                {this.props.editing ?
+                <button className="Save" onClick={()=>this.updateProduct(this.props.currentProduct)}>Save Changes</button>
                 :<button  className="add"onClick={() => this.addProduct()}>Add to Inventory</button> 
                 
                 }

@@ -12,21 +12,21 @@ class Dashboard extends Component {
 
     
     
-    // deleteProduct(id){
-    //     console.log(id)
-    //     axios.delete(`/api/product/${id}`)
-    //     .then(response => {
-    //         this.props.getInventory();
-    //     }).catch(err => console.log(err));
-    // }
-
-    deleteProduct =(id)=>{
+    deleteProduct(id){
         console.log(id)
-        axios.delete(`/api/product/${id}`).then(response=>{
-            console.log(response);
-            this.props.updateItem(response.data)
-        })
-      }
+        axios.delete(`/api/product/${id}`)
+        .then(response => {
+            this.props.getInventory();
+        }).catch(err => console.log(err));
+    }
+
+    // deleteProduct =(id)=>{
+    //     console.log(id)
+    //     axios.delete(`/api/product/${id}`).then(response=>{
+    //         console.log(response);
+    //         this.props.updateItem(response.data)
+    //     })
+    //   }
  
 
     render() {
